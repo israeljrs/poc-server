@@ -7,12 +7,15 @@ module Api
       before_action :set_order, only: %i[show update destroy]
 
       def index
-        orders = Order.order('created_at DESC')
-        render json: { status: 'SUCCESS', data: orders }, status: :ok
+        user = User.find(params[:user_id])
+        orders = Order.where(user: user).order('created_at DESC')
+        render json: { status: 'SUCCESS', user: user, orders: orders }, status: :ok
       end
 
       def create
+        user = User.find(params[:user_id])
         order = Order.new(orders_params)
+        order.user = user
         order.save!
         render json: { status: 'SUCCESS', data: order }, status: :ok
       end
@@ -35,6 +38,7 @@ module Api
       private
 
       def set_order
+        @user = User.find(params[:user_id])
         @order = Order.find(params[:id])
       end
 
