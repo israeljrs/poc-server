@@ -32,6 +32,13 @@ gem 'rack-cors'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
+  gem 'faker'
+  gem 'cpf_faker'
 end
 
 group :development do
@@ -42,7 +49,6 @@ group :development do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'awesome_print'
-  gem 'faker'
 end
 
 
